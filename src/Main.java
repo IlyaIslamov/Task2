@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,10 +19,16 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        ArrayList<String> stringArrayList = new ArrayList<>();
         Pattern email = Pattern.compile("(\\d|\\w)(\\d|\\w|_|\\.)+@(\\d|\\w)+\\.\\w+");
         Matcher matcher = email.matcher(str);
         while (matcher.find()){
-            System.out.println(matcher.group());
+            stringArrayList.add(matcher.group());
+        }
+        if (stringArrayList.size() == 0){
+            System.out.println("Email not found");
+        }else {
+            System.out.println(stringArrayList);
         }
     }
 }
